@@ -17,7 +17,7 @@ public class GA
     /**
      * The population size.
      */
-    private static final int POPULATION_SIZE = 100;
+    private static final int POPULATION_SIZE = 4;
     
     /**
      * The number of generations.
@@ -134,5 +134,23 @@ public class GA
      * Calculates the fitness of each individual.
      */
     private void evaluate() {
+        for (int i = 0; i < POPULATION_SIZE; i++) {
+            int sum = 0;
+
+            for (int j = 0; j < BITS; j++) {
+                sum += population[i][j] ? 1 : 0;
+            }
+
+            fitness[i] = sum;
+        }
+    }
+
+    /**
+     * Print fitness values
+     */
+    public void printFitnessValues() {
+        for (int i = 0; i < POPULATION_SIZE; i++) {
+            System.out.println(Arrays.toString(population[i]) + " = " + fitness[i]);
+        }
     }
 }
