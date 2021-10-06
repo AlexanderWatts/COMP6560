@@ -17,7 +17,7 @@ public class GA
     /**
      * The population size.
      */
-    private static final int POPULATION_SIZE = 2;
+    private static final int POPULATION_SIZE = 4;
     
     /**
      * The number of generations.
@@ -161,8 +161,8 @@ public class GA
     public boolean[][] crossover(int first, int second) {
         int k = random.nextInt(BITS);
 
-        boolean[] parentOne = population[first];
-        boolean[] parentTwo = population[second];
+        boolean[] parentOne = Arrays.copyOf(population[first], BITS);
+        boolean[] parentTwo = Arrays.copyOf(population[second], BITS);
 
         for (int i = k; i < BITS; i++) {
             boolean buffer = parentOne[i];
