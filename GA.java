@@ -158,13 +158,13 @@ public class GA
         }
     }
 
-    public void crossover(int first, int second) {
+    public boolean[][] crossover(int first, int second) {
         int k = random.nextInt(BITS);
 
         boolean[] parentOne = population[first];
         boolean[] parentTwo = population[second];
 
-        for (int i = 0; i < k; i++) {
+        for (int i = k; i < BITS; i++) {
             boolean buffer = parentOne[i];
             parentOne[i] = parentTwo[i];
             parentTwo[i] = buffer;
@@ -174,5 +174,12 @@ public class GA
         System.out.println("K->" + k);
         System.out.println(Arrays.toString(parentOne));
         System.out.println(Arrays.toString(parentTwo));
+
+        boolean[][] result = new boolean[2][BITS];
+
+        result[0] = parentOne;
+        result[0] = parentTwo;
+
+        return result;
     }
 }
