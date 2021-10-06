@@ -129,19 +129,23 @@ public class GA
     public void printPopulation() {
         Arrays.stream(population).forEach(individual -> System.out.println(Arrays.toString(individual)));
     }
+
+    public int getIndividualFitness(boolean[] individual) {
+        int sum = 0;
+
+        for (int i = 0; i < individual.length; i++) {
+            sum += individual[i] ? 1 : 0;
+        }
+
+        return sum;
+    }
     
     /**
      * Calculates the fitness of each individual.
      */
     private void evaluate() {
         for (int i = 0; i < POPULATION_SIZE; i++) {
-            int sum = 0;
-
-            for (int j = 0; j < BITS; j++) {
-                sum += population[i][j] ? 1 : 0;
-            }
-
-            fitness[i] = sum;
+            fitness[i] = getIndividualFitness(population[i]);
         }
     }
 
