@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ run()
+comment0.text=\n\ Starts\ the\ execution\ of\ the\ GA.\n
+comment1.params=
+comment1.target=int\ select()
+comment1.text=\n\ Retuns\ the\ index\ of\ the\ selected\ parent\ using\ a\ roulette\ wheel.\n\ \n\ @return\ the\ index\ of\ the\ selected\ parent\ using\ a\ roulette\ wheel.\n
+comment2.params=
+comment2.target=void\ initialise()
+comment2.text=\n\ Initialises\ the\ population.\n
+comment3.params=
+comment3.target=void\ evaluate()
+comment3.text=\n\ Calculates\ the\ fitness\ of\ each\ individual.\n
+numComments=4
