@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -181,5 +182,21 @@ public class GA
         result[0] = parentTwo;
 
         return result;
+    }
+
+    public boolean[] mutation(int parent) {
+        int k = random.nextInt(BITS);
+
+        boolean[] mutated = Arrays.copyOf(population[parent], BITS);
+
+        System.out.println("k " + k);
+
+        System.out.println("Before " + Arrays.toString(mutated));
+
+        mutated[k] = !mutated[k];
+
+        System.out.println("After " + Arrays.toString(mutated));
+
+        return mutated;
     }
 }
