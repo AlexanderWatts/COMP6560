@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -111,6 +112,22 @@ public class GA
      * Initialises the population.
      */
     private void initialise() {
+        for (int i = 0; i < POPULATION_SIZE; i++) {
+            boolean[] individual = new boolean[BITS];
+
+            for (int j = 0; j < BITS; j++) {
+                individual[j] = random.nextBoolean();
+            }
+
+            population[i] = individual;
+        }
+    }
+
+    /**
+     * Print the initialised population
+     */
+    public void printPopulation() {
+        Arrays.stream(population).forEach(individual -> System.out.println(Arrays.toString(individual)));
     }
     
     /**
