@@ -17,7 +17,7 @@ public class GA
     /**
      * The population size.
      */
-    private static final int POPULATION_SIZE = 4;
+    private static final int POPULATION_SIZE = 2;
     
     /**
      * The number of generations.
@@ -156,5 +156,23 @@ public class GA
         for (int i = 0; i < POPULATION_SIZE; i++) {
             System.out.println(Arrays.toString(population[i]) + " = " + fitness[i]);
         }
+    }
+
+    public void crossover(int first, int second) {
+        int k = random.nextInt(BITS);
+
+        boolean[] parentOne = population[first];
+        boolean[] parentTwo = population[second];
+
+        for (int i = 0; i < k; i++) {
+            boolean buffer = parentOne[i];
+            parentOne[i] = parentTwo[i];
+            parentTwo[i] = buffer;
+        }
+
+        System.out.println("Crossover");
+        System.out.println("K->" + k);
+        System.out.println(Arrays.toString(parentOne));
+        System.out.println(Arrays.toString(parentTwo));
     }
 }
