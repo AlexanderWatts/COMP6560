@@ -179,7 +179,7 @@ public class GA
         boolean[][] result = new boolean[2][BITS];
 
         result[0] = parentOne;
-        result[0] = parentTwo;
+        result[1] = parentTwo;
 
         return result;
     }
