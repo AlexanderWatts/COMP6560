@@ -17,7 +17,7 @@ public class GA
     /**
      * The population size.
      */
-    private static final int POPULATION_SIZE = 4;
+    private static final int POPULATION_SIZE = 100;
     
     /**
      * The number of generations.
@@ -52,14 +52,28 @@ public class GA
         // evaluates the propulation                                    //
         //--------------------------------------------------------------//
         evaluate();
-        
+    
         for (int g = 0; g < MAX_GENERATION; g++) {
             //----------------------------------------------------------//
             // creates a new population                                 //
             //----------------------------------------------------------//
-            
-            // TODO
+            boolean[][] newPopulation = new boolean[POPULATION_SIZE][BITS];
+            int items = 0;
 
+            for (int i = 0; i < POPULATION_SIZE; i++) {
+                boolean[][] crossedOver = crossover(select(), select());
+
+                for (int j = 0; j < crossedOver.length; j++) { 
+                    if (items < POPULATION_SIZE) {
+                        newPopulation[items++] = crossedOver[j];
+                    }
+                }
+            }
+
+            population = newPopulation;
+
+            printPopulation(newPopulation);
+            
             //----------------------------------------------------------//
             // evaluates the new population                             //
             //----------------------------------------------------------//
@@ -130,6 +144,11 @@ public class GA
         Arrays.stream(population).forEach(individual -> System.out.println(Arrays.toString(individual)));
     }
 
+    public void printPopulation(boolean[][] population) {
+        Arrays.stream(population).forEach(individual -> System.out.println(Arrays.toString(individual)));
+    }
+    
+
     public int getIndividualFitness(boolean[] individual) {
         int sum = 0;
 
@@ -170,11 +189,6 @@ public class GA
             parentTwo[i] = buffer;
         }
 
-        System.out.println("Crossover");
-        System.out.println("K->" + k);
-        System.out.println(Arrays.toString(parentOne));
-        System.out.println(Arrays.toString(parentTwo));
-
         boolean[][] result = new boolean[2][BITS];
 
         result[0] = parentOne;
@@ -188,13 +202,7 @@ public class GA
 
         boolean[] mutated = Arrays.copyOf(population[parent], BITS);
 
-        System.out.println("k " + k);
-
-        System.out.println("Before " + Arrays.toString(mutated));
-
         mutated[k] = !mutated[k];
-
-        System.out.println("After " + Arrays.toString(mutated));
 
         return mutated;
     }
