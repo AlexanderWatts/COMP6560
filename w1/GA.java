@@ -72,10 +72,11 @@ public class GA
                 }
             }
 
+            System.out.println("-------------------Population = " + g + "-------------------");
+            printPopulation(population);
+
             population = newPopulation;
 
-            printPopulation(newPopulation);
-            
             //----------------------------------------------------------//
             // evaluates the new population                             //
             //----------------------------------------------------------//
