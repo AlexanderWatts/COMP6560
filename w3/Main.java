@@ -13,6 +13,10 @@ public class Main {
   public static void run() {
     GPModel model = new EvenParity(4);
 
+    model.setPopulationSize(500);
+    model.setNoGenerations(100);
+    model.setMaxDepth(8);
+
     Life.get().addGenerationListener(new GenerationAdapter() {
       public void onGenerationEnd() {
         Stats.get().print(StatField.GEN_NUMBER, StatField.GEN_FITNESS_MIN, StatField.GEN_FITTEST_PROGRAM);
