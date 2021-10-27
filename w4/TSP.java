@@ -76,9 +76,6 @@ public class TSP
         //--------------------------------------------------------------//
         initialise();
 
-        System.out.println("////////////HERE//////////////");
-        simpleInversionMutation(0);
-
         //--------------------------------------------------------------//
         // evaluates the propulation                                    //
         //--------------------------------------------------------------//
@@ -220,10 +217,6 @@ public class TSP
         int leftPointer = smallest;
         int rightPointer = largest;
 
-        System.out.println("smallest: " + smallest + " largest: " + largest);
-
-        System.out.println(Arrays.toString(offspring));
-        
         // reverse items in array between two points
         while (leftPointer <= rightPointer) {
             
@@ -235,8 +228,6 @@ public class TSP
             leftPointer++;
             rightPointer--;
         }
-        
-        System.out.println(Arrays.toString(offspring));
 
         return offspring;
     }
