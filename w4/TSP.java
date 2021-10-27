@@ -1,6 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -146,7 +150,23 @@ public class TSP
      * Initialises the population. The population is represented by a
      * 2-dimensional array attribute named population.
      */
-    private void initialise() {
+    public void initialise() {
+        int tourSize = 24;
+
+        List<Integer> cities = new ArrayList<>();
+
+        for (int i = 0; i < tourSize; i++) {
+            int value = i + 1;
+            cities.add(value);
+        }
+
+        for (int i = 0; i < population.length; i++) {
+            Collections.shuffle(cities);
+
+            population[i] = cities.stream().mapToInt(city->city).toArray();
+
+            System.out.println(Arrays.toString(population[i]));
+        }
     }
 
     /**
