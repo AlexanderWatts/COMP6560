@@ -76,6 +76,9 @@ public class TSP
         //--------------------------------------------------------------//
         initialise();
 
+        System.out.println("////////////HERE//////////////");
+        simpleInversionMutation(0);
+
         //--------------------------------------------------------------//
         // evaluates the propulation                                    //
         //--------------------------------------------------------------//
@@ -203,7 +206,41 @@ public class TSP
 
         return offspring;
     }
-    
+
+    private int[] simpleInversionMutation(int parent) {
+        int[] offspring = population[parent];
+
+        int k1 = random.nextInt(SIZE);
+        int k2 = random.nextInt(SIZE);
+
+        // Determine which random number is bigger or smaller
+        int largest = k1 > k2 ? k1 : k2;
+        int smallest = k1 < k2 ? k1 : k2;
+
+        int leftPointer = smallest;
+        int rightPointer = largest;
+
+        System.out.println("smallest: " + smallest + " largest: " + largest);
+
+        System.out.println(Arrays.toString(offspring));
+        
+        // reverse items in array between two points
+        while (leftPointer <= rightPointer) {
+            
+            int temp = offspring[leftPointer];
+            
+            offspring[leftPointer] = offspring[rightPointer];
+            offspring[rightPointer] = temp;
+            
+            leftPointer++;
+            rightPointer--;
+        }
+        
+        System.out.println(Arrays.toString(offspring));
+
+        return offspring;
+    }
+
     /**
      * Returns the index of the selected parent using a roulette wheel.
      *
