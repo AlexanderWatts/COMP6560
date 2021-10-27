@@ -15,6 +15,8 @@ import java.util.Random;
  */
 public class TSP
 {
+
+    private static final int tourSize = 24;
     /**
      * The population size.
      */
@@ -151,8 +153,6 @@ public class TSP
      * 2-dimensional array attribute named population.
      */
     public void initialise() {
-        int tourSize = 24;
-
         List<Integer> cities = new ArrayList<>();
 
         for (int i = 0; i < tourSize; i++) {
