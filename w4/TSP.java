@@ -15,8 +15,6 @@ import java.util.Random;
  */
 public class TSP
 {
-
-    private static final int tourSize = 24;
     /**
      * The population size.
      */
@@ -152,20 +150,18 @@ public class TSP
      * Initialises the population. The population is represented by a
      * 2-dimensional array attribute named population.
      */
-    public void initialise() {
+    private void initialise() {
         List<Integer> cities = new ArrayList<>();
 
-        for (int i = 0; i < tourSize; i++) {
+        for (int i = 0; i < SIZE; i++) {
             int value = i + 1;
             cities.add(value);
         }
 
-        for (int i = 0; i < population.length; i++) {
+        for (int i = 0; i < POPULATION_SIZE; i++) {
             Collections.shuffle(cities);
 
             population[i] = cities.stream().mapToInt(city->city).toArray();
-
-            System.out.println(Arrays.toString(population[i]));
         }
     }
 
@@ -207,7 +203,7 @@ public class TSP
 
         return offspring;
     }
-
+    
     /**
      * Returns the index of the selected parent using a roulette wheel.
      *
