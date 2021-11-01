@@ -170,6 +170,27 @@ public class TSP
      * Calculates the fitness of each individual.
      */
     private void evaluate() {
+        for (int i = 0; i < POPULATION_SIZE; i++) {
+
+            System.out.println(Arrays.toString(population[i]));
+
+            int cost = 0;
+
+            for (int j = 0; j < SIZE; j++) {
+
+                if (j < SIZE-1) {
+                    int from = population[i][j];
+                    int to = population[i][j+1];
+                    cost += COST[from][to];
+                }
+            }
+
+            int from = population[i][SIZE - 1];
+            int to = population[i][0];
+            cost += COST[from][to];
+
+            fitness[i] = cost;
+        }
     }
 
     /**
