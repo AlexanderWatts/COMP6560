@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.Stack;
 
 /**
  * Simple GA for the Travelling Salesman Problem.
@@ -150,7 +153,7 @@ public class TSP
      * Initialises the population. The population is represented by a
      * 2-dimensional array attribute named population.
      */
-    private void initialise() {
+    public void initialise() {
         List<Integer> cities = new ArrayList<>();
 
         for (int i = 0; i < SIZE; i++) {
@@ -205,6 +208,55 @@ public class TSP
      */
     private int[][] crossover(int first, int second) {
         int[][] offspring = new int[2][SIZE];
+
+        return offspring;
+    }
+
+    public int getIndex(int[] array, int item) {
+        int index = -1;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == item) {
+                return i;
+            }
+        }
+
+        return index;
+    }
+
+    public int[][] cycleCrossover(int[] first, int[] second) {
+        int SIZE = first.length;
+
+        int[][] offspring = new int[2][SIZE];
+
+        int[] parentOne = first;
+        int[] parentTwo = second;
+
+        int initialCity = random.nextInt(SIZE);
+
+        Stack<Integer> visited = new Stack<>();
+
+        boolean cycle = true;
+
+        int city = initialCity;
+        
+        while (cycle) {
+            int cityIndex = getIndex(parentOne, city);
+            int mappedCity = parentTwo[cityIndex];
+
+            System.out.println("City->" + city);
+            System.out.println("City index->" + cityIndex);
+            System.out.println("Mapped->" + mappedCity);
+
+            if (mappedCity == initialCity) {
+                cycle = false;
+            }
+
+            visited.add(city);
+            city = mappedCity;
+        }
+
+        System.out.println(visited.toString());
 
         return offspring;
     }
