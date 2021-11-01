@@ -154,8 +154,7 @@ public class TSP
         List<Integer> cities = new ArrayList<>();
 
         for (int i = 0; i < SIZE; i++) {
-            int value = i + 1;
-            cities.add(value);
+            cities.add(i);
         }
 
         for (int i = 0; i < POPULATION_SIZE; i++) {
