@@ -46,6 +46,14 @@ public class Trader
 
         return sum / periodLength;
     }
+
+    public double momentum(int currentPeriod, int numberOfDaysSinceCurrentPrice) {
+        double currentPrice = data[currentPeriod][0];
+
+        double priceNDaysAgo = data[currentPeriod-numberOfDaysSinceCurrentPrice][0];
+
+        return currentPrice - priceNDaysAgo;
+    }
     
     /**
      * Loads a csv file in memory, skipping the first line (column names).
