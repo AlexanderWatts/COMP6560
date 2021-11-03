@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This class can be used to simulate a trading strategy based
@@ -33,6 +34,18 @@ public class Trader
      * The (empty) initial portfolio.
      */
     private int portfolio = 0;
+
+    public double simpleMovingAverage(int startingPeriod, int endingPeriod) {
+        int periodLength = endingPeriod - startingPeriod;
+
+        double sum = 0;
+
+        for (int i = startingPeriod; i < endingPeriod; i++) {
+            sum += data[i][0];
+        }
+
+        return sum / periodLength;
+    }
     
     /**
      * Loads a csv file in memory, skipping the first line (column names).
