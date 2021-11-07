@@ -33,8 +33,8 @@ public class Trader
     /**
      * The (empty) initial portfolio.
      */
-    private int portfolio = 0;
-    
+    private double portfolio = 0;
+
     /**
      * Loads a csv file in memory, skipping the first line (column names).
      * 
@@ -63,7 +63,30 @@ public class Trader
 
         data = lines.toArray(data);
     }
-    
+
+    private void action(double currentPrice, double actionValue) {
+
+        System.out.println("---------------------------------");
+        System.out.println("Current stock price: " + currentPrice);
+        System.out.println("Moving average action: " + actionValue);
+        System.out.println("Budget: " + budget);
+        
+        if (actionValue == 1.0) {
+            double toBuyAmount = budget / currentPrice;
+            budget -= (toBuyAmount * currentPrice);
+            portfolio += toBuyAmount;
+        }
+
+        if (actionValue == 2.0) {
+            double toSellAmount = budget / currentPrice;
+            double canSellAmount = portfolio - toSellAmount;
+
+            budget += (canSellAmount * currentPrice);
+
+            portfolio -= canSellAmount;
+        }
+    }
+
     /**
      * Simulates a trade.
      * 
@@ -74,6 +97,13 @@ public class Trader
         for (int i = 0; i < data.length; i++) {
             // should look at the "Action" column to decide what to do,
             // ignoring cases where there is no action (Double.NaN)
+            //System.out.println(data[i][4]);
+
+            // MA Action
+            action(data[i][0], data[i][4]);
+
+            // MOM Action
+            // action(data[i][0], data[i][5]);
         }
         
         // return the total amount (cash) after the trading session,
